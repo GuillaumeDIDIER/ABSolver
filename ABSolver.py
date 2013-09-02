@@ -19,22 +19,22 @@ def sommef(list,i):
         return a
     return f
 def fpart(i):
-    m=input('nombre de Ka de la famille acidobasique no %s' %i)
+    m=int(raw_input('nombre de Ka de la famille acidobasique no %s' %i))
     name=[]
     Concentrations=[]
-    a=input('nom du %s-acide' %m)
+    a=raw_input('nom du %s-acide' %m)
     name.append(a)
-    a=input('Concentration de %s' %(name[0]))
+    a=float(raw_input('Concentration de %s' %(name[0])))
     Concentrations.append(a)
     for j in range(m):
-        name.append(input('nom de %s deprotone %s fois' %(name[0],j+1)))
-        Concentrations.append(input('concentration de %s' %(name[j+1])))
+        name.append(raw_input('nom de %s deprotone %s fois' %(name[0],j+1)))
+        Concentrations.append(float(raw_input('concentration de %s' %(name[j+1]))))
     Tableau1=[name,Concentrations]
     pKalist=[]
     pKavalues=[]
     for j in range(m):
         pKalist.append('pKa %s/%s' %(name[j],name[j+1]))
-        pKavalues.append(input(pKalist[j]))
+        pKavalues.append(float(raw_input(pKalist[j])))
     c=0
     d=0
     partf=[]
@@ -117,7 +117,7 @@ def Solver(f,y0=0,x0=7,a=0,b=14):
         print "Aucune valeur trouvee"
         return "ERROR"
 def SolvAcidBas():
-    n=input('nombre de familles acido-basiques')
+    n=int(raw_input('nombre de familles acido-basiques'))
     k=1.0e-14
     t=lambda(h): (k/h)-h
     fonctions=[t]
@@ -125,7 +125,7 @@ def SolvAcidBas():
         fonctions.append(fpart(i+1))
     u=sommef(fonctions,n+1)
     p=lambda(h): 10**-h
-    a=input("Connaissez-vous une valeur approximative du pH?","Si oui entrez 'Oui', pH0.","Si vous savez que le pH est acide ou basique entrez 'Oui','A' (ou B)","Sinon entrez 'non'")
+    a=tuple(raw_input("Connaissez-vous une valeur approximative du pH?\nSi oui entrez 'Oui', pH0.\nSi vous savez que le pH est acide ou basique entrez 'Oui','A' (ou B)\nSinon entrez 'non'"))
     def f(x):
         return u(p(x))
     if a[0]=='Oui':
